@@ -1,39 +1,24 @@
 <?php
+// call file property
+require('./PropertyConstant.php');
 
-class Produk {
-    public string $kode;
-    public string $nama;
-    public int $harga;
-    public int $stok;
+use Pbo\Marketplace\Produk;
 
-    public const PAJAK = 0.11;
-
-    public function totalPajak() {
-        $persen = self::PAJAK * 100;
-        $jumlahPajak = $this->harga * self::PAJAK;
-        $total = $this->harga + $jumlahPajak;
-
-        echo "Pajak: {$persen}%";
-        echo "<br>";
-        echo "Jumlah Pajak: Rp" . $jumlahPajak;
-        echo "<br>";
-        echo "Total Harga Setelah Pajak: Rp" . $total;
-    }
-}
-
+//object
 $produk = new Produk();
-$produk->kode = "P001";
-$produk->nama = "Laptop";
-$produk->harga = 10000000;
-$produk->stok = 5;
+$produk -> setKode('P0001') ->setNama('Laptop') ->setHarga(10000000) ->setStok(5);
 
-echo "Produk: " . $produk->nama;
-echo "<br>";
-echo "Harga: Rp" . $produk->harga;
-echo "<br>";
-echo "Stok: " . $produk->stok;
-echo "<br>";
 
-$produk->totalPajak();
 
-?>
+
+//hasil
+
+echo "Produk: " . $produk->getNama();
+echo "<br/>";
+echo "Harga: Rp." . $produk->getHarga();
+echo "<br/>";
+echo "Stok: " . $produk->getStok();
+echo "<br/>";
+echo "Pajak: " . $produk->pajak() . "%";
+echo "<br/>";
+echo "Total pajak: Rp. " . $produk->total() ;
